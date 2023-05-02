@@ -36,7 +36,7 @@ public class HomeController {
 		return "home";//View Name
 		// "/WEB-INF/views/" => prefix
 		// ".jsp" ==> suffix
-		///WEB-INF/views/home.jsp ¸¦ ¹ÝÈ¯
+		///WEB-INF/views/home.jsp ë¥¼ ë°˜í™˜
 	}
 	
 }
