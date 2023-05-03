@@ -50,16 +50,29 @@ public class MemoController {
 	}
 	
 	@RequestMapping("/memoList")
-	public String memoList(Model model) {
+	public String memoList(Model model, @RequestParam(defaultValue="1") int cpage) {
+		//System.out.println("cpage: "+cpage);
 		//총 게시글 수 가져오기
+		if(cpage<=0) {
+			cpage=1;
+		}
 		int totalCount=memoDao.getTotalCount();
+		int pageSize=10;
+		int pageCount=(totalCount-1)/pageSize+1;
+		if(cpage>pageCount) {
+			cpage=pageCount;
+		}
+		int end=cpage*pageSize;
+		int start=end-pageSize;
 		
 		//전체글 가져오기
-		List<MemoVO> memoArr=memoDao.listMemo(1, 5);
+		List<MemoVO> memoArr=memoDao.listMemo(start, end);
 		
 		model.addAttribute("totalCount",totalCount);
 		model.addAttribute("memoArr", memoArr);
-		
+		model.addAttribute("pageCount",pageCount);
+		model.addAttribute("pageSize",pageSize);
+		model.addAttribute("cpage",cpage);
 		return "memo/list";
 	}
 
@@ -111,3 +124,11 @@ public class MemoController {
 	
 
 }
+
+
+
+
+
+
+
+

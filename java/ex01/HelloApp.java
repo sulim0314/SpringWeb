@@ -6,11 +6,11 @@ public class HelloApp {
 		//MessageBeanEn mb=new MessageBeanEn();
 		MessageBeanKo mb=new MessageBeanKo();
 		
-		mb.sayHello("È«±æµ¿");
-		/*HelloAppÀÌ MessageBeanEn°´Ã¼¸¦ »ç¿ë(use) ÇÑ´Ù
-		 * ==> HelloAppÀÌ MessageBeanEn¿¡ ÀÇÁ¸(dependency) ÇÑ´Ù
-		 * : ÀÌ ¶§ ÀÇÁ¸¼ºÀÖ´Â °´Ã¼µé°£ÀÇ °áÇÕµµ°¡ Áß¿äÇÏ´Ù
-		 * °áÇÕµµ°¡ °­ÇÏ¸é, ÇâÈÄ °´Ã¼¸¦ ±³Ã¼ÇÏ°íÀÚ ÇÒ¶§ ¹®Á¦°¡ µÉ ¼ö ÀÖ´Ù.
+		mb.sayHello("í™ê¸¸ë™");
+		/*HelloAppì´ MessageBeanEnê°ì²´ë¥¼ ì‚¬ìš©(use) í•œë‹¤
+		 * ==> HelloAppì´ MessageBeanEnì— ì˜ì¡´(dependency) í•œë‹¤
+		 * : ì´ ë•Œ ì˜ì¡´ì„±ìžˆëŠ” ê°ì²´ë“¤ê°„ì˜ ê²°í•©ë„ê°€ ì¤‘ìš”í•˜ë‹¤
+		 * ê²°í•©ë„ê°€ ê°•í•˜ë©´, í–¥í›„ ê°ì²´ë¥¼ êµì²´í•˜ê³ ìž í• ë•Œ ë¬¸ì œê°€ ë  ìˆ˜ ìžˆë‹¤.
 		 * */
 
 	}

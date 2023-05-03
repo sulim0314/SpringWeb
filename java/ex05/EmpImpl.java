@@ -34,19 +34,19 @@ public class EmpImpl implements Emp {
 
 	@Override
 	public void info2() {
-		this.info1();//ÀÌ¸§
+		this.info1();//ì´ë¦„
 		System.out.println("Dept: "+dept);
 	}
 
 	@Override
 	public void info3() {
-		this.info2();//ÀÌ¸§, ºÎ¼­
+		this.info2();//ì´ë¦„, ë¶€ì„œ
 		System.out.println("Salary: "+sal);
 	}
 
 	@Override
 	public void info4() {
-		System.out.println("Çà¿îÀÇ ¼ıÀÚ: "+ran.nextInt(100));
+		System.out.println("í–‰ìš´ì˜ ìˆ«ì: "+ran.nextInt(100));
 
 	}
 

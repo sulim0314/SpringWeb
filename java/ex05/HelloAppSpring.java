@@ -9,7 +9,7 @@ public class HelloAppSpring {
 		
 		String config="ex05/employee.xml";
 		ApplicationContext ctx=new ClassPathXmlApplicationContext(config);
-								//classpath¸¦ ±âÁØÀ¸·Î ¼³Á¤ÆÄÀÏÀ» µv´Â ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê
+								//classpathë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì„¤ì •íŒŒì¼ì„ íƒ–ëŠ” ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ
 		Emp e=ctx.getBean("e3", Emp.class);
 		//e.info1();
 		e.info2();

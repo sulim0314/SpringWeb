@@ -4,7 +4,7 @@ public class MessageBeanKo implements MessageBean{
 	
 	@Override
 	public void sayHello(String name) {
-		System.out.println("¾È³çÇÏ¼¼¿ä? "+name+"~~");
+		System.out.println("ì•ˆë…•í•˜ì„¸ìš”? "+name+"~~");
 	}
 
 }

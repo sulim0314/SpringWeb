@@ -3,7 +3,7 @@ package ex01;
 public class MessageBeanKo {
 	
 	public void sayHello(String name) {
-		System.out.println("¾È³çÇÏ¼¼¿ä? "+name+"´Ô~~~");
+		System.out.println("ì•ˆë…•í•˜ì„¸ìš”? "+name+"ë‹˜~~~");
 	}
 
 }

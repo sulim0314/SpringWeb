@@ -3,8 +3,10 @@ package ex04;
 public interface Message {
 	
 	void sayHello();
+	
 	void sayHi(String ... names);
-	//¸Å°³º¯¼ö¸¦ ÀÚÀ¯ÀÚÀç·Î ³ÖÀ» ¼ö ÀÖ´Ù 1°³, 2°³,...10°³ ...n°³
-	//namesº¯¼ö´Â String[] ¹è¿­ Å¸ÀÔ
+	
+	//ë§¤ê°œë³€ìˆ˜ë¥¼ ììœ ìì¬ë¡œ ë„£ì„ ìˆ˜ ìˆë‹¤ 1ê°œ, 2ê°œ,...10ê°œ ...nê°œ
+	//namesë³€ìˆ˜ëŠ” String[] ë°°ì—´ íƒ€ì…
 
 }

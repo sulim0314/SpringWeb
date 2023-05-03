@@ -21,6 +21,7 @@
 			<th colspan="4">
 				<h2>:: 한줄 메모장 목록 ::</h2>
 				<span>총 게시글 수:${totalCount}개</span>
+				<span>현재 ${cpage} 페이지/ ${pageCount} pages</span>
 			</th>
 		</tr>
 		<tr>
@@ -51,7 +52,13 @@
 			</c:forEach>
 			
 		</c:if>
-		
+		<tr>
+			<td colspan='4'>
+				<c:forEach var="i" begin="1" end="${pageCount}">
+					[<a href="memoList?cpage=${i}">${i}</a>]
+				</c:forEach>
+			</td>
+		</tr>
 	</table>
 	<p style='text-align:center'>
 		[<a href="memo">글쓰기</a>]

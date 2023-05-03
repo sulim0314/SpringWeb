@@ -1,6 +1,8 @@
 package com.memo.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -25,6 +27,7 @@ public class MemoDAOMyBatis implements MemoDAO {
 	@Override
 	public int insertMemo(MemoVO memo) {
 		int n=session.insert(NS+".insertMemo", memo);
+		System.out.println("방금 등록된 글의 글번호: "+memo.getNo());
 		return n;
 	}
 
@@ -36,8 +39,12 @@ public class MemoDAOMyBatis implements MemoDAO {
 
 	@Override
 	public List<MemoVO> listMemo(int start, int end) {
+		Map<String, Object> map=new HashMap<>();
+		map.put("start", start);
+		map.put("end", end);
 		
-		List<MemoVO> arr=session.selectList(NS+".listMemo");
+		List<MemoVO> arr=session.selectList(NS+".listMemo", map);
+			
 		
 		return arr;
 	}

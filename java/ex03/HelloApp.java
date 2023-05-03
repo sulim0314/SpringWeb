@@ -1,18 +1,20 @@
 package ex03;
 import org.springframework.context.*;
 import org.springframework.context.support.*;
-//IoC (Inversion of Control) : Á¦¾î±ÇÀ» ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ °®´Â´Ù
-//½ºÇÁ¸µÄÁÅ×ÀÌ³Ê´Â ¼³Á¤ÆÄÀÏ(applicationContext.xml)ÀÌ³ª ¾î³ëÅ×ÀÌ¼ÇÀ» ÀĞ¾î¼­ °´Ã¼¸¦ ¸Ş¸ğ¸®¿¡ ¿Ã¸°´Ù
+
+//IoC (Inversion of Control) : ì œì–´ê¶Œì„ ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ê°–ëŠ”ë‹¤
+//ìŠ¤í”„ë§ì»¨í…Œì´ë„ˆëŠ” ì„¤ì •íŒŒì¼(applicationContext.xml)ì´ë‚˜ ì–´ë…¸í…Œì´ì…˜ì„ ì½ì–´ì„œ ê°ì²´ë¥¼ ë©”ëª¨ë¦¬ì— ì˜¬ë¦°ë‹¤
+
 public class HelloApp {
 
 	public static void main(String[] args) {
 		String config="src/main/java/ex03/applicationContext.xml";
 		
-		//½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ ¾Ë¾Æ¼­ xmlÆÄÀÏÀ» ÀĞ¾î¼­ beanÀ¸·Î µî·ÏµÈ °´Ã¼¸¦ »ı¼ºÇØ¼­ ¸Ş¸ğ¸®¿¡ ¿Ã¸°´Ù
+		//ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ ì•Œì•„ì„œ xmlíŒŒì¼ì„ ì½ì–´ì„œ beanìœ¼ë¡œ ë“±ë¡ëœ ê°ì²´ë¥¼ ìƒì„±í•´ì„œ ë©”ëª¨ë¦¬ì— ì˜¬ë¦°ë‹¤
 		ApplicationContext ctx=new FileSystemXmlApplicationContext(config);
 		
-		//DL(Dependecy Lookup) : ¸Ş¸ğ¸®¿¡ ¿Ã¶ó°£ °´Ã¼¸¦ ÀÌ¸§À¸·Î Ã£´Â °Í
-		MessageBean mb=(MessageBean)ctx.getBean("mbEn");
+		//DL(Dependecy Lookup) : ë©”ëª¨ë¦¬ì— ì˜¬ë¼ê°„ ê°ì²´ë¥¼ ì´ë¦„ìœ¼ë¡œ ì°¾ëŠ” ê²ƒ
+		MessageBean mb = (MessageBean) ctx.getBean("mbEn");
 		mb.sayHello("BTS");
 	}
 
