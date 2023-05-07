@@ -8,6 +8,8 @@
 	<typeAliases>
 		<typeAlias type="com.memo.model.MemoVO" alias="Memo"/>
 		<typeAlias type="com.user.model.UserVO" alias="User"/>
+		<typeAlias type="com.shop.model.ProductVO" alias="Product"/>
+		<typeAlias type="com.shop.model.CategoryVO" alias="Category"/>
 	</typeAliases>
 	
 	
@@ -16,5 +18,6 @@
 		<mapper resource="config/mybatis/mapper/MemoMapper.xml" />
 		<!-- SQL문을 모아놓은 파일 -->
 		<mapper resource="config/mybatis/mapper/UserMapper.xml" />
+		<mapper resource="config/mybatis/mapper/ProductMapper.xml" />
 	</mappers>
 </configuration>

@@ -38,28 +38,33 @@
           
             <!-- Links -->
             <ul class="navbar-nav">
+            <c:if test="${loginUser eq null}">
+            <!-- 로그인 하지 않은 경우라면 -------------------- -->
               <li class="nav-item">
                 <a class="nav-link" href="${myctx}/join">Signup</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="${myctx}/login">Login</a>
               </li>
+             </c:if>
+             <c:if test="${loginUser ne null}">
+             <!-- 로그인한 경우라면 --------------- --> 
               <li class="nav-item bg-primary">
-                <a class="nav-link text-white" href="#">a님 로그인 중...</a>
+                <a class="nav-link text-white" href="#">${loginUser.userid}님 로그인 중...</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="${myctx}/logout">Logout</a>
               </li>
-          
+          	</c:if>
               <!-- Dropdown -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Dropdown link
+                  Auth Page
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
+                  <a class="dropdown-item" href="${myctx}/admin/prodForm">AdminPage</a>
+                  <a class="dropdown-item" href="${myctx}/user/myPage">MyPage</a>
                 </div>
               </li>
             </ul>
