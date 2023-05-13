@@ -8,30 +8,31 @@
 		CKEDITOR.replace('bcontent');
 		$('#bf').submit(function(){
 			//제목
-			if(!$('#subject').val()) {
+			if(!$('#subject').val()){
 				alert('제목을 입력하세요');
 				$('#subject').focus();
 				return false;
-			}
+			}			
 			//작성자 아이디
-			if(!$('#userid').val()) {
+			if(!$('#userid').val()){
 				alert('글쓴이를 입력하세요');
-				$('#userid').focus();
+				$('#userid').focus();				
 				return false;
 			}
-			if(!CKEDITOR.instances.bcontent.getData()) {
+			if(!CKEDITOR.instances.bcontent.getData()){
 				alert('글내용을 입력하세요');
 				CKEDITOR.instances.bcontent.focus();
 				return false;
 			}
 			
 			//비밀번호
-			if(!$('#bpwd').val()) {
+			if(!$('#bpwd').val()){
 				alert('비밀번호를 입력하세요');
-				$('#bpwd').focus();
+				$('#bpwd').focus();				
 				return false;
 			}
 			
+			return true
 		})//submit------------
 		
 	})//$() end----------------
@@ -50,7 +51,8 @@
    enctype: multipart/form-data     
     -->   
 
-   <form name="bf" id="bf" role="form" action="write" method="post">
+   <form name="bf" id="bf" role="form" action="write" method="post"
+    enctype="multipart/form-data">
 	<!-- hidden data---------------------------------  -->
 	<input type="hidden" name="mode" value="write">
 	<!-- 원본글쓰기: mode=> write
@@ -69,9 +71,9 @@
           <td style="width:20%"><b>글쓴이</b></td>
           <td style="width:80%">
           <input type="text" name="userid" id="userid" value="${loginUser.userid}"
-          	<c:if test="${loginUser ne null}">
-          		readonly
-          	</c:if>
+            <c:if test="${loginUser ne null}">	
+            	readonly
+            </c:if>
            class="form-control">
           </td>
        </tr>       
@@ -109,3 +111,4 @@
 </form>       
 </div><!-- .col end-->
 </div><!-- .row end-->
+    

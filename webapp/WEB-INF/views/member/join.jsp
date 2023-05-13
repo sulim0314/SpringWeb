@@ -5,7 +5,7 @@
 <script type="text/javascript" src="./js/userCheck.js"></script>
 <!-- ------------------------------------------ -->
 <div class="container">
-	<h1 class="text-center mb-3">회원 가입</h1>
+	<h1 class="text-center mb-3">회원 가입-Signup</h1>
 	<form name="mf" action="join" method="post">
 	<!-- ---활동회원: mode(0), 관리자(9)------------------------------- -->
 	<input type="hidden" name="mode" value="0">
