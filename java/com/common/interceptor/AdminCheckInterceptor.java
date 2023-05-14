@@ -11,9 +11,9 @@ import com.user.model.UserVO;
 
 import lombok.extern.log4j.Log4j;
 
-//servlet-context.xml¿¡ ºóµî·ÏÇÏ°í ¸ÅÇÎÇÑ´Ù
+//servlet-context.xmlì— ë¹ˆë“±ë¡í•˜ê³  ë§¤í•‘í•œë‹¤
 /*<interceptors>
- * Áß·«...
+ * ì¤‘ëµ...
   <interceptor>
 			<mapping path="/admin/**"/>
 			<beans:bean class="com.common.interceptor.AdminCheckInterceptor"/>
@@ -29,14 +29,14 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session=req.getSession();
 		UserVO user=(UserVO)session.getAttribute("loginUser");
 		if(user!=null) {
-			if(user.getMstate()!=9) {//mstate:0 (ÀÏ¹İÈ¸¿ø),-1(Á¤ÁöÈ¸¿ø),-2(Å»ÅğÈ¸¿ø),9(°ü¸®ÀÚ)
-				req.setAttribute("msg", "°ü¸®ÀÚ¸¸ ÀÌ¿ë °¡´ÉÇÕ´Ï´Ù");
+			if(user.getMstate()!=9) {//mstate:0 (ì¼ë°˜íšŒì›),-1(ì •ì§€íšŒì›),-2(íƒˆí‡´íšŒì›),9(ê´€ë¦¬ì)
+				req.setAttribute("msg", "ê´€ë¦¬ìë§Œ ì´ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤");
 				req.setAttribute("loc", req.getContextPath()+"/index");
 				
 				RequestDispatcher disp=req.getRequestDispatcher("/WEB-INF/views/message.jsp");
 				disp.forward(req, res);
 				
-				return false;//°ü¸®ÀÚ°¡ ¾Æ´Ñ°æ¿ì
+				return false;//ê´€ë¦¬ìê°€ ì•„ë‹Œê²½ìš°
 			}
 		}
 		

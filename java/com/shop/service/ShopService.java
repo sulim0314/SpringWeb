@@ -8,18 +8,18 @@ import com.shop.model.ProductVO;
 
 public interface ShopService {
 	
-	/*Pspec º°·Î »óÇ° Á¤º¸ °¡Á®¿À±â*/
+	/*Pspec ë³„ë¡œ ìƒí’ˆ ì •ë³´ ê°€ì ¸ì˜¤ê¸°*/
 	public List<ProductVO> selectByPspec(String pspec);
-	/*Ä«Å×°í¸®º° »óÇ°Á¤º¸ °¡Á®¿À±â*/
+	/*ì¹´í…Œê³ ë¦¬ë³„ ìƒí’ˆì •ë³´ ê°€ì ¸ì˜¤ê¸°*/
 	public List<ProductVO> selectByCategory(int cg_num);
-	/**»óÇ°¹øÈ£·Î Æ¯Á¤ »óÇ° Á¤º¸ °¡Á®¿À±â*/
+	/**ìƒí’ˆë²ˆí˜¸ë¡œ íŠ¹ì • ìƒí’ˆ ì •ë³´ ê°€ì ¸ì˜¤ê¸°*/
 	public ProductVO selectByPnum(int pnum);
 	
-	/**Àå¹Ù±¸´Ï °ü·Ã ¸Ş¼Òµå===============*/
-	int addCart(CartVO cartVo);//Àå¹Ù±¸´Ï Ãß°¡ÇÏ±â
-	int updateCartQty(CartVO cartVo);//Àå¹Ù±¸´Ï Ãß°¡ °ü·Ã=>±âÁ¸¿¡ ´ã±ä »óÇ°ÀÌ¸é ¼ö·®¸¸ ¼öÁ¤ÇÏ±â
-	int editCart(CartVO cartVo);// Àå¹Ù±¸´Ï ¼öÁ¤ÇÏ±â
-	List<CartVO> selectCartView(int midx);//Æ¯Á¤ È¸¿øÀÇ Àå¹Ù±¸´Ï ¸ñ·Ïº¸±â
+	/**ì¥ë°”êµ¬ë‹ˆ ê´€ë ¨ ë©”ì†Œë“œ===============*/
+	int addCart(CartVO cartVo);//ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€í•˜ê¸°
+	int updateCartQty(CartVO cartVo);//ì¥ë°”êµ¬ë‹ˆ ì¶”ê°€ ê´€ë ¨=>ê¸°ì¡´ì— ë‹´ê¸´ ìƒí’ˆì´ë©´ ìˆ˜ëŸ‰ë§Œ ìˆ˜ì •í•˜ê¸°
+	int editCart(CartVO cartVo);// ì¥ë°”êµ¬ë‹ˆ ìˆ˜ì •í•˜ê¸°
+	List<CartVO> selectCartView(int midx);//íŠ¹ì • íšŒì›ì˜ ì¥ë°”êµ¬ë‹ˆ ëª©ë¡ë³´ê¸°
 	
 	int delCart(int cartNum);
 	int delCartAll(CartVO cartVo);
@@ -27,7 +27,7 @@ public interface ShopService {
 	
 	int getCartCountByIdx(CartVO cartVo);
 	
-	CartVO getCartTotal(int midx_fk);//Æ¯Á¤ È¸¿øÀÇ Àå¹Ù±¸´Ï ÃÑ¾×,ÃÑÆ÷ÀÎÆ® ±¸ÇÏ±â
+	CartVO getCartTotal(int midx_fk);//íŠ¹ì • íšŒì›ì˜ ì¥ë°”êµ¬ë‹ˆ ì´ì•¡,ì´í¬ì¸íŠ¸ êµ¬í•˜ê¸°
 
 	public void delCartByOrder(int midx_fk, int pnum);
 	

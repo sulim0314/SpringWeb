@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.log4j.Log4j;
-/*[1]¶óÀÌºê·¯¸® µî·Ï
+/*[1]ë¼ì´ë¸ŒëŸ¬ë¦¬ ë“±ë¡
  * ===pom.xml=========
  * <!-- File Upload -->
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -34,14 +34,14 @@ import lombok.extern.log4j.Log4j;
 		</dependency>
  * ====================
  * 
- * [2] servlet-context.xml¿¡ ºó µî·Ï
- * <!-- ÆÄÀÏ¾÷·Îµå¸¦ À§ÇÑ  MultipartResolver ¼³Á¤ =============================== -->
-	<!--ÁÖÀÇ: ºóÀÇ id´Â ¹İµå½Ã multipartResolver·Î µî·ÏÇØ¾ß ÇÑ´Ù.´Ù¸¥ ¾ÆÀÌµğ¸¦ ÁÖ¸é DispatcherServletÀÌ MultipartResolver·Î
-	ÀÎ½ÄÇÏÁú ¸øÇÑ´Ù.  -->
+ * [2] servlet-context.xmlì— ë¹ˆ ë“±ë¡
+ * <!-- íŒŒì¼ì—…ë¡œë“œë¥¼ ìœ„í•œ  MultipartResolver ì„¤ì • =============================== -->
+	<!--ì£¼ì˜: ë¹ˆì˜ idëŠ” ë°˜ë“œì‹œ multipartResolverë¡œ ë“±ë¡í•´ì•¼ í•œë‹¤.ë‹¤ë¥¸ ì•„ì´ë””ë¥¼ ì£¼ë©´ DispatcherServletì´ MultipartResolverë¡œ
+	ì¸ì‹í•˜ì§ˆ ëª»í•œë‹¤.  -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="utf-8"/>
 		<beans:property name="maxUploadSize" value="-1"/>
-		<!-- -1À» ÁÖ¸é ¹«Á¦ÇÑ ¾÷·Îµå °¡´É -->
+		<!-- -1ì„ ì£¼ë©´ ë¬´ì œí•œ ì—…ë¡œë“œ ê°€ëŠ¥ -->
 	</beans:bean>
 	
 	<beans:bean id="upDir" class="java.lang.String">
@@ -56,7 +56,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class FileController {
 	
-	@Resource(name="upDir") //¸®¼Ò½º ÀÌ¸§À¸·Î ÁÖÀÔÇÏÀÚ.
+	@Resource(name="upDir") //ë¦¬ì†ŒìŠ¤ ì´ë¦„ìœ¼ë¡œ ì£¼ì…í•˜ì.
 	private String upDir;
 	
 	@GetMapping("/fileForm")
@@ -65,28 +65,28 @@ public class FileController {
 		//WEB-INF/views/fileForm.jsp
 	}
 	
-	//[1] MultipartFileÀ» ÀÌ¿ëÇÏ´Â ¹æ¹ı => transferTo()¸¦ ÀÌ¿ëÇÏ¿© ¾÷·Îµå Ã³¸®
-	//[2] MultipartHttpServletRequet¸¦ ÀÌ¿ëÇÏ´Â ¹æ¹ı
+	//[1] MultipartFileì„ ì´ìš©í•˜ëŠ” ë°©ë²• => transferTo()ë¥¼ ì´ìš©í•˜ì—¬ ì—…ë¡œë“œ ì²˜ë¦¬
+	//[2] MultipartHttpServletRequetë¥¼ ì´ìš©í•˜ëŠ” ë°©ë²•
 	@PostMapping("/fileUp")
 	public String fileUpload(Model m, @RequestParam("name") String name,
 			@RequestParam("mfilename") MultipartFile mfilename) {
 		log.info("name: "+name+", mfilename: "+mfilename);
 		log.info("upDir: "+upDir);
-		//1. ÆÄÀÏÁ¤º¸(ÆÄÀÏ¸í, ÆÄÀÏÅ©±â, Ã·ºÎ ¿©ºÎ) ¾Ë¾Æ³»±â (DB¿¡ ÀúÀåÇÏ±â À§ÇØ)
-		if(!mfilename.isEmpty()) {//Ã·ºÎÇß´Ù¸é
-			String filename=mfilename.getOriginalFilename();//ÆÄÀÏ¸í
-			long filesize=mfilename.getSize();//ÆÄÀÏÅ©±â
-			String ctype=mfilename.getContentType();//ÆÄÀÏÀ¯Çü
+		//1. íŒŒì¼ì •ë³´(íŒŒì¼ëª…, íŒŒì¼í¬ê¸°, ì²¨ë¶€ ì—¬ë¶€) ì•Œì•„ë‚´ê¸° (DBì— ì €ì¥í•˜ê¸° ìœ„í•´)
+		if(!mfilename.isEmpty()) {//ì²¨ë¶€í–ˆë‹¤ë©´
+			String filename=mfilename.getOriginalFilename();//íŒŒì¼ëª…
+			long filesize=mfilename.getSize();//íŒŒì¼í¬ê¸°
+			String ctype=mfilename.getContentType();//íŒŒì¼ìœ í˜•
 			log.info("filename: "+filename+", filesize: "+filesize);
 			m.addAttribute("fname",filename);
 			m.addAttribute("fsize", filesize);
 			m.addAttribute("ftype",ctype);
 			m.addAttribute("name",name);
-			//2. ÆÄÀÏ¾÷·Îµå Ã³¸® => transferTo()
+			//2. íŒŒì¼ì—…ë¡œë“œ ì²˜ë¦¬ => transferTo()
 			try {
 			mfilename.transferTo(new File(upDir, filename));
 			}catch(IOException e) {
-				log.info("¾÷·Îµå ½ÇÆĞ: "+e);
+				log.info("ì—…ë¡œë“œ ì‹¤íŒ¨: "+e);
 				log.error(e);
 			}
 			
@@ -94,31 +94,31 @@ public class FileController {
 		return "file/fileResult";
 		//WEB-INF/views/fileResult.jsp
 	}//-----------------------------------------
-	////[2] MultipartHttpServletRequet¸¦ ÀÌ¿ëÇÏ´Â ¹æ¹ı
+	////[2] MultipartHttpServletRequetë¥¼ ì´ìš©í•˜ëŠ” ë°©ë²•
 	@PostMapping("/fileUp2")
 	public String fileUpload2(Model m, HttpServletRequest req) {
 		MultipartHttpServletRequest mr=(MultipartHttpServletRequest)req;
-		//1. ¿Ã¸°ÀÌ ¹Ş±â
+		//1. ì˜¬ë¦°ì´ ë°›ê¸°
 		String name=mr.getParameter("name");
-		//2. Ã·ºÎÆÄÀÏ ¸ñ·Ï ¾ò±â List<MultipartFile> getFiles("ÆÄ¶ó¹ÌÅÍ¸í")
+		//2. ì²¨ë¶€íŒŒì¼ ëª©ë¡ ì–»ê¸° List<MultipartFile> getFiles("íŒŒë¼ë¯¸í„°ëª…")
 		List<MultipartFile> fList=mr.getFiles("mfilename");
 		if(fList!=null) {
 			for(int i=0;i<fList.size();i++) {
 				MultipartFile mf=fList.get(i);
-				//Ã·ºÎÆÄÀÏ¸í
-				//"·£´ıÇÑ¹®ÀÚ¿­_ÆÄÀÏ¸í" 
+				//ì²¨ë¶€íŒŒì¼ëª…
+				//"ëœë¤í•œë¬¸ìì—´_íŒŒì¼ëª…" 
 				UUID uid=UUID.randomUUID();
 				String uidStr=uid.toString();
 				
-				//½ÇÁ¦ ¾÷·Îµå µÇ´Â ÆÄÀÏ¸í
+				//ì‹¤ì œ ì—…ë¡œë“œ ë˜ëŠ” íŒŒì¼ëª…
 				String fname=uidStr+"_"+mf.getOriginalFilename();//uuid_face.png
-				//»ç¿ëÀÚ°¡ ¾÷·ÎµåÇÑ ¿øº»ÆÄÀÏ¸í
+				//ì‚¬ìš©ìê°€ ì—…ë¡œë“œí•œ ì›ë³¸íŒŒì¼ëª…
 				String origin=mf.getOriginalFilename();
 				
-				//µ¿ÀÏÇÑ ÆÄÀÏ¸íÀ» ¾÷·Îµå½Ã ³ªÁß¿¡ ¾÷·ÎµåÇÑ ÆÄÀÏÀÌ ÀÌÀü ÆÄÀÏÀ» µ¤¾î¾²±âÇÔ
+				//ë™ì¼í•œ íŒŒì¼ëª…ì„ ì—…ë¡œë“œì‹œ ë‚˜ì¤‘ì— ì—…ë¡œë“œí•œ íŒŒì¼ì´ ì´ì „ íŒŒì¼ì„ ë®ì–´ì“°ê¸°í•¨
 				long fsize=mf.getSize();
 				String ctype=mf.getContentType();
-				//¾÷·Îµå Ã³¸®
+				//ì—…ë¡œë“œ ì²˜ë¦¬
 				try {
 					mf.transferTo(new File(upDir, fname));
 				} catch (Exception e) {

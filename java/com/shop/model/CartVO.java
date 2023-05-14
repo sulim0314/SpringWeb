@@ -7,23 +7,23 @@ import lombok.Data;
 @Data
 public class CartVO {
 	
-	private int cartNum;//Àå¹Ù±¸´Ï ¹øÈ£
-	private int idx_fk;//È¸¿ø¹øÈ£
-	private int pnum_fk;//»óÇ°¹øÈ£
-	private int pqty;//Àå¹Ù±¸´Ï »óÇ° ¼ö·®
+	private int cartNum;//ì¥ë°”êµ¬ë‹ˆ ë²ˆí˜¸
+	private int idx_fk;//íšŒì›ë²ˆí˜¸
+	private int pnum_fk;//ìƒí’ˆë²ˆí˜¸
+	private int pqty;//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆ ìˆ˜ëŸ‰
 	private Date indate;
 	
-	//Àå¹Ù±¸´Ï »óÇ°Á¤º¸
+	//ì¥ë°”êµ¬ë‹ˆ ìƒí’ˆì •ë³´
 	private String pname;
 	private String pimage1;
 	private int price;
 	private int saleprice;
 	private int point;
 	
-	private int totalPrice;//saleprice*pqty => °³º° »óÇ°ÀÇ ÃÑ¾×
-	private int totalPoint;//point*pqty => °³º° »óÇ°ÀÇ ÃÑ Àû¸³Æ÷ÀÎÆ®
+	private int totalPrice;//saleprice*pqty => ê°œë³„ ìƒí’ˆì˜ ì´ì•¡
+	private int totalPoint;//point*pqty => ê°œë³„ ìƒí’ˆì˜ ì´ ì ë¦½í¬ì¸íŠ¸
 
-	private int cartTotalPrice;//Àå¹Ù±¸´Ï¿¡ ´ãÀº ¸ğµç »óÇ°ÀÇ ÃÑ¾×
+	private int cartTotalPrice;//ì¥ë°”êµ¬ë‹ˆì— ë‹´ì€ ëª¨ë“  ìƒí’ˆì˜ ì´ì•¡
 	private int cartTotalPoint;
 
 }

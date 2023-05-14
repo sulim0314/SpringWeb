@@ -21,7 +21,7 @@ public class ProductController {
 	@Inject
 	private ShopService shopService;
 	 
-	//pspecº°·Î »óÇ°¸ñ·Ï °¡Á®¿À±â
+	//pspecë³„ë¡œ ìƒí’ˆëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 	@GetMapping("/prodPspec")
 	public String productByPspec(Model m, @RequestParam(name="pspec", defaultValue="HIT") String pspec) {
 		log.info("pspec: "+pspec);

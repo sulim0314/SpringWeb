@@ -41,14 +41,14 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public int addCart(CartVO cartVo) {
-		//[1] È¸¿ø¹øÈ£¿Í »óÇ°¹øÈ£·Î cartÅ×ÀÌºí¿¡ ÀÖ´Â »óÇ°°³¼ö °¡Á®¿À±â
+		//[1] íšŒì›ë²ˆí˜¸ì™€ ìƒí’ˆë²ˆí˜¸ë¡œ cartí…Œì´ë¸”ì— ìˆëŠ” ìƒí’ˆê°œìˆ˜ ê°€ì ¸ì˜¤ê¸°
 		Integer cnt=cartMapper.selectCartCountByPnum(cartVo);
-		//[1_1] Àå¹Ù±¸´Ï¿¡ Ãß°¡ÇÒ »óÇ°ÀÌ ÀÌ¹Ì Àå¹Ù±¸´Ï¿¡ ´ã°ÜÀÖ´Ù¸é => ¼ö·®¸¸ ¼öÁ¤ =>update¹®
+		//[1_1] ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€í•  ìƒí’ˆì´ ì´ë¯¸ ì¥ë°”êµ¬ë‹ˆì— ë‹´ê²¨ìˆë‹¤ë©´ => ìˆ˜ëŸ‰ë§Œ ìˆ˜ì • =>updateë¬¸
 		if(cnt!=null) {
 			int n=cartMapper.updateCartQty(cartVo);
 			return n;
 		}else {
-		//[1_2] Àå¹Ù±¸´Ï¿¡ ¾ø´Â »óÇ°À» Ãß°¡ÇÑ´Ù¸é => insert¹® ¼öÇà
+		//[1_2] ì¥ë°”êµ¬ë‹ˆì— ì—†ëŠ” ìƒí’ˆì„ ì¶”ê°€í•œë‹¤ë©´ => insertë¬¸ ìˆ˜í–‰
 			int n=cartMapper.addCart(cartVo);
 			return n;
 		}
@@ -62,8 +62,17 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public int editCart(CartVO cartVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		//ìˆ˜ëŸ‰ì— ë”°ë¼ ë¡œì§ ì²˜ë¦¬
+		int qty=cartVo.getPqty();
+		if(qty==0) {//ìˆ˜ëŸ‰ì´ 0ì´ë©´ ì‚­ì œì²˜ë¦¬
+			return cartMapper.delCart(cartVo.getCartNum());
+		}else if(qty<0) {
+			throw new NumberFormatException("ìˆ˜ëŸ‰ì€ ìŒìˆ˜ë¡œ ì…ë ¥í•˜ë©´ ì•ˆë©ë‹ˆë‹¤");
+		}else if(qty>50) {
+			throw new NumberFormatException("ìˆ˜ëŸ‰ì€ 50ê°œ ì´ë‚´ë¡œë§Œ ìˆ˜ì • ê°€ëŠ¥í•´ìš”");
+		}else {		
+			return cartMapper.editCart(cartVo);
+		}
 	}
 
 	@Override
@@ -79,8 +88,7 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public int delCartAll(CartVO cartVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartMapper.delCartAll(cartVo.getIdx_fk());
 	}
 
 	@Override

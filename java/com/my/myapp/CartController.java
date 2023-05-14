@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,7 @@ public class CartController {
 		if(pnum==0||pqty==0) {
 			return "redirect:index";
 		}
-		//·Î±×ÀÎÇÑ È¸¿øÀÇ È¸¿ø¹øÈ£
+		//ë¡œê·¸ì¸í•œ íšŒì›ì˜ íšŒì›ë²ˆí˜¸
 		UserVO loginUser=(UserVO)session.getAttribute("loginUser");
 		int idx_fk=loginUser.getIdx();
 		
@@ -42,16 +43,16 @@ public class CartController {
 		cvo.setIdx_fk(idx_fk);
 		cvo.setPnum_fk(pnum);
 		cvo.setPqty(pqty);
-		//Àå¹Ù±¸´Ï¿¡ »óÇ° Ãß°¡-----
+		//ì¥ë°”êµ¬ë‹ˆì— ìƒí’ˆ ì¶”ê°€-----
 		int n=shopService.addCart(cvo);
 		log.info("n: "+n+" , cvo="+cvo);
-		//Àå¹Ù±¸´Ï ¸ñ·Ï °¡Á®¿À±â
+		//ì¥ë°”êµ¬ë‹ˆ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 		//List<CartVO> cartList=shopService.selectCartView(idx_fk);
 		//m.addAttribute("cartArr", cartList);
 		
-		//¿©±â¼­ forwardÀÌµ¿À» ÇÏ¸é ºê¶ó¿ìÀú »õ·Î°íÄ§½Ã °è¼Ó »óÇ° ¼ö·®ÀÌ Ãß°¡µÇ´Â Çö»ó ¹ß»ı
-		//=> Àå¹Ù±¸´Ï ÃÑ¾× Áõ°¡
-		//==> redirect¹æ½ÄÀ¸·Î ÀÌµ¿ÇØ ÇÔ
+		//ì—¬ê¸°ì„œ forwardì´ë™ì„ í•˜ë©´ ë¸Œë¼ìš°ì € ìƒˆë¡œê³ ì¹¨ì‹œ ê³„ì† ìƒí’ˆ ìˆ˜ëŸ‰ì´ ì¶”ê°€ë˜ëŠ” í˜„ìƒ ë°œìƒ
+		//=> ì¥ë°”êµ¬ë‹ˆ ì´ì•¡ ì¦ê°€
+		//==> redirectë°©ì‹ìœ¼ë¡œ ì´ë™í•´ í•¨
 		
 		//return "shop/cartList";
 		return "redirect:cartList";
@@ -63,9 +64,9 @@ public class CartController {
 		UserVO loginUser=(UserVO)session.getAttribute("loginUser");
 		int idx_fk=loginUser.getIdx();
 		
-		//Àå¹Ù±¸´Ï ¸ñ·Ï °¡Á®¿À±â
+		//ì¥ë°”êµ¬ë‹ˆ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 		List<CartVO> cartList=shopService.selectCartView(idx_fk);
-		//Æ¯Á¤ È¸¿øÀÇ Àå¹Ù±¸´Ï ÃÑ¾×°ú ÃÑÆ÷ÀÎÆ® °¡Á®¿À±â
+		//íŠ¹ì • íšŒì›ì˜ ì¥ë°”êµ¬ë‹ˆ ì´ì•¡ê³¼ ì´í¬ì¸íŠ¸ ê°€ì ¸ì˜¤ê¸°
 		CartVO cvo=shopService.getCartTotal(idx_fk);
 		
 		m.addAttribute("cartArr", cartList);
@@ -81,7 +82,30 @@ public class CartController {
 		int n=shopService.delCart(cartNum);
 		
 		return "redirect:cartList";
+	}//--------------------------
+	
+	@PostMapping("/cartEdit")
+	public String cartEdit(@ModelAttribute CartVO cvo) {
+		log.info("cvo="+cvo);
+		shopService.editCart(cvo);
+		
+		return "redirect:cartList";
 	}
+	
+	@GetMapping("/delCartAll")
+	public String cartDeleteAll(HttpSession session) {
+		UserVO loginUser=(UserVO)session.getAttribute("loginUser");
+		int idx_fk=loginUser.getIdx();
+		CartVO cvo=new CartVO();
+		cvo.setIdx_fk(idx_fk);
+		
+		shopService.delCartAll(cvo);
+		
+		
+		return "redirect:cartList";
+	}
+	
+	
 	
 	
 

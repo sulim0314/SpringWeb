@@ -7,7 +7,7 @@ import com.shop.model.CartVO;
 public interface CartMapper {
 	
 	Integer selectCartCountByPnum(CartVO cvo);
-	//È¸¿ø¹øÈ£, »óÇ°¹øÈ£
+	//íšŒì›ë²ˆí˜¸, ìƒí’ˆë²ˆí˜¸
 	int updateCartQty(CartVO cvo);
 	int addCart(CartVO cvo);
 	
@@ -16,6 +16,7 @@ public interface CartMapper {
 	
 	int delCart(int cartNum);
 	int editCart(CartVO cvo);
+	int delCartAll(int idx_fk);
 	
 
 }
