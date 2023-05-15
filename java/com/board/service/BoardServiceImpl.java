@@ -28,8 +28,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> selectBoardAllPaging(PagingVO paging) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.boardMapper.selectBoardAllPaging(paging);
 	}
 
 	@Override
@@ -40,8 +40,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int getTotalCount(PagingVO paging) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.boardMapper.getTotalCountPaging(paging);
 	}
 
 	@Override
